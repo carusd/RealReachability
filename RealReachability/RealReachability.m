@@ -21,8 +21,6 @@
 #define kDefaultCheckInterval 2.0f
 #define kDefaultPingTimeout 2.0f
 
-#define kMinAutoCheckInterval 0.3f
-#define kMaxAutoCheckInterval 60.0f
 
 NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChangedNotification";
 
@@ -325,16 +323,6 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
     if (!self.isNotifying)
     {
         return;
-    }
-    
-    if (self.autoCheckInterval < kMinAutoCheckInterval)
-    {
-        self.autoCheckInterval = kMinAutoCheckInterval;
-    }
-    
-    if (self.autoCheckInterval > kMaxAutoCheckInterval)
-    {
-        self.autoCheckInterval = kMaxAutoCheckInterval;
     }
     
     

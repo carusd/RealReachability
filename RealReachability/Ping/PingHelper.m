@@ -65,7 +65,7 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
 
 - (void)pingWithBlock:(void (^)(BOOL isSuccess))completion
 {
-    //NSLog(@"pingWithBlock");
+    NSLog(@"pingWithBlock");
     if (completion)
     {
         // copy the block, then added to the blocks array.
@@ -94,7 +94,7 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
 
 - (void)clearPingFoundation
 {
-    //NSLog(@"clearPingFoundation");
+    NSLog(@"clearPingFoundation");
     
     if (self.pingFoundation)
     {
@@ -106,7 +106,7 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
 
 - (void)startPing
 {
-    //NSLog(@"startPing");
+    NSLog(@"startPing");
     [self clearPingFoundation];
     
     self.isPinging = YES;
@@ -169,43 +169,43 @@ NSString *const kPingResultNotification = @"kPingResultNotification";
 // When the pinger starts, send the ping immediately
 - (void)pingFoundation:(PingFoundation *)pinger didStartWithAddress:(NSData *)address
 {
-    //NSLog(@"didStartWithAddress");
+    NSLog(@"didStartWithAddress");
     [self.pingFoundation sendPingWithData:nil];
 }
 
 - (void)pingFoundation:(PingFoundation *)pinger didFailWithError:(NSError *)error
 {
-    //NSLog(@"didFailWithError, error=%@", error);
+    NSLog(@"didFailWithError, error=%@", error);
     [self endWithFlag:NO];
 }
 
 - (void)pingFoundation:(PingFoundation *)pinger didFailToSendPacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber error:(NSError *)error
 {
-    //NSLog(@"didFailToSendPacket, sequenceNumber = %@, error=%@", @(sequenceNumber), error);
+    NSLog(@"didFailToSendPacket, sequenceNumber = %@, error=%@", @(sequenceNumber), error);
     [self endWithFlag:NO];
 }
 
 - (void)pingFoundation:(PingFoundation *)pinger didReceivePingResponsePacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber
 {
-    //NSLog(@"didReceivePingResponsePacket, sequenceNumber = %@", @(sequenceNumber));
+    NSLog(@"didReceivePingResponsePacket, sequenceNumber = %@", @(sequenceNumber));
     [self endWithFlag:YES];
 }
 
 - (void)pingFoundation:(PingFoundation *)pinger didSendPacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber
 {
-    //NSLog(@"didSendPacket, sequenceNumber = %@", @(sequenceNumber));
+    NSLog(@"didSendPacket, sequenceNumber = %@", @(sequenceNumber));
 }
 
 - (void)pingFoundation:(PingFoundation *)pinger didReceiveUnexpectedPacket:(NSData *)packet
 {
-    //NSLog(@"didReceiveUnexpectedPacket");
+    NSLog(@"didReceiveUnexpectedPacket");
 }
 
 #pragma mark - TimeOut handler
 
 - (void)pingTimeOut
 {
-    //NSLog(@"pingTimeOut");
+    NSLog(@"pingTimeOut");
     
     if (!self.isPinging)
     {
