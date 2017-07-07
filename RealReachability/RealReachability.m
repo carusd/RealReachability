@@ -228,7 +228,12 @@ NSString *const kRealReachabilityChangedNotification = @"kRealReachabilityChange
     {
         case RRStateUnReachable:
         {
-            return RealStatusNotReachable;
+            if ([GLocalConnection currentLocalConnectionStatus] == LC_UnReachable) {
+                return RealStatusNotReachable;
+            } else {
+                return (ReachabilityStatus)[GLocalConnection currentLocalConnectionStatus];
+            }
+            
         }
         case RRStateWIFI:
         {
